@@ -98,3 +98,24 @@
 ### Estado do fork nesta versão
 
 Fork completo e utilizável de ponta a ponta: todos os arquivos equivalentes ao Esquadrão Dev original existem, mais o Agente 9 (Auditor Externo), exclusivo deste fork. Nenhum item pendente de geração — restam só as 3 confirmações do usuário sobre defaults assumidos.
+
+## v1.1 — Correção: regra de idioma como regra de topo, independente de releitura de arquivo de agente
+
+### Motivação
+
+Uma verificação ad hoc de status de épico (build + testes + leitura de `entregas/*.md`), pedida no meio de uma sessão já em andamento, foi respondida inteiramente em inglês. Causa raiz: a instrução de idioma só existia no cabeçalho de cada arquivo de agente individualmente — em um pedido solto, sem releitura formal de nenhum arquivo de agente naquele turno, essa instrução nunca chegou a valer. O problema foi agravado pela saída de ferramentas (build/testes) estar naturalmente em inglês, o que a sessão espelhou também na própria narração/conclusão.
+
+Mesmo padrão de causa raiz dos três achados que originaram a v0.1 deste fork: uma proteção condicionada a um gatilho específico (aqui, "ter relido o arquivo certo") não é uma proteção confiável quando o pedido foge do fluxo padrão.
+
+### Corrigido: `orquestrador.md`
+
+- Nova seção **"Regra de topo (idioma): vale para toda resposta desta sessão, com ou sem releitura de arquivo de agente"**, inserida logo após a Regra de Topo de pausa explícita, com o mesmo nível de prioridade. Idioma Português (Brasil) passa a valer para qualquer resposta do projeto — incluindo verificações ad hoc, auditorias soltas, retomadas de sessão — independente de qual arquivo foi lido por último. Saída bruta de ferramentas (build/terminal/logs) pode continuar em seu idioma original; a narração, análise e conclusão sobre essa saída, nunca.
+
+### Corrigido: `agentes/09-auditor-externo.md`
+
+- Reforço explícito logo no início do arquivo: a regra de idioma vale mesmo em auditoria parcial/ad hoc, mesmo que o pedido do humano seja informal e não repita a instrução — não depende do agente ter sido "instanciado" colando o arquivo inteiro do zero.
+
+### Pendente para próximas entregas
+
+- Nenhum item de arquivo pendente nesta correção — v1.0 permanece a entrega completa de todos os arquivos do fork. v1.1 é uma correção pontual de comportamento transversal, não uma nova geração de artefato.
+- Recomenda-se, na próxima retomada de projeto real (`prompt-retomada.md`), verificar se alguma resposta anterior à v1.1 foi produzida em idioma incorreto por este mesmo motivo — não é necessário refazer o conteúdo técnico dessas respostas, só sinalizar a divergência de formato caso encontrada (mesmo tratamento já dado a outras divergências de formato no passo 2.5 do `prompt-retomada.md`).
