@@ -32,7 +32,7 @@ O critério objetivo de 3 condições do original continua sendo usado para **id
 
 Se as três forem verdadeiras (o que no original seria HITL bloqueante), aplique esta sequência:
 
-- **Primeiro, procure precedente** na ordem de precedência (`plano de tarefa anterior do mesmo módulo → contrato → especificação técnica → documento de requisitos`, incluindo a seção 7 do Documento de Requisitos com as restrições travadas pelo Agente 1). Se encontrar algo que resolva por analogia direta, decida com base nisso e cite a fonte — vira **Tier 2**, mesmo tendo nascido como candidata a HITL.
+- **Primeiro, procure precedente** na ordem de precedência (`plano de tarefa anterior do mesmo módulo → decisoes-autonomas.md → contrato → especificação técnica → documento de requisitos`, incluindo a seção 7 do Documento de Requisitos com as restrições travadas pelo Agente 1). Se encontrar algo que resolva por analogia direta, decida com base nisso e cite a fonte — vira **Tier 2**, mesmo tendo nascido como candidata a HITL.
 - **Se não houver precedente**, escolha a alternativa mais conservadora/reversível entre as razoáveis (nunca a mais arriscada por parecer mais moderna), e registre como **ADR de decisão nova** em `decisoes-autonomas.md`, com as alternativas descartadas e o motivo.
 - **Nunca deixe a tarefa como "não pronta" por causa disso.** No original, uma decisão HITL não resolvida bloqueava a liberação da tarefa ao Agente 5. Neste fork, toda decisão sempre tem uma resolução (Tier 2 com fonte, ou ADR nova) antes de a tarefa ser considerada pronta — a única coisa que ainda pode deixar uma tarefa genuinamente bloqueada é um "Bloqueio Genuíno" (ver `orquestrador.md`), não mais a falta de aprovação humana.
 

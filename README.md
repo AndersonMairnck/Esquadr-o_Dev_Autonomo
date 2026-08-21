@@ -38,7 +38,7 @@ Essas três falhas geraram uma regra nova, transversal a todo o framework, detal
 - **Agente 8 (Documentador)**: inalterado.
 - **Orquestrador**: vira o "aprovador em nome do usuário ausente" — ver `orquestrador.md`.
 
-> Nesta entrega (v1.0), **todos os itens do Bloco A do `CRONOGRAMA.md` foram gerados** — os 10 agentes (00 a 09), `orquestrador.md`, `prompt-retomada.md`, os 4 templates, e o `GUIA-DE-INICIO-RAPIDO.md`. Os Agentes 6, 7 e 8 são **cópias intencionais do original, sem mudança de conteúdo** — só ganharam uma nota de fork explicando por quê (ver seção "O que muda por agente" acima: eles não são HITL, são disciplina de processo, e são a rede de segurança técnica que substitui a supervisão humana). Restam só as **3 decisões suas em aberto** (nome definitivo, local do repositório, comportamento de "Bloqueio genuíno") — ver seção logo abaixo.
+> Nesta entrega (v1.0), **todos os itens do Bloco A do `CRONOGRAMA.md` foram gerados** — os 10 agentes (00 a 09), `orquestrador.md`, `prompt-retomada.md`, os 4 templates, e o `GUIA-DE-INICIO-RAPIDO.md`. Os Agentes 6, 7 e 8 são **cópias intencionais do original, sem mudança de conteúdo** — só ganharam uma nota de fork explicando por quê (ver seção "O que muda por agente" acima: eles não são HITL, são disciplina de processo, e são a rede de segurança técnica que substitui a supervisão humana). Restam só as **2 decisões suas em aberto** (nome definitivo, local do repositório) — ver seção logo abaixo. O comportamento de "Bloqueio Genuíno" já foi decidido e travado (ver item 3 da seção correspondente).
 
 ## Agente 9 (novo, exclusivo deste fork): Auditor Externo
 
@@ -89,7 +89,7 @@ esquadrao-dev-autonomo/
 
 Todo o Bloco A do `CRONOGRAMA.md` está fechado nesta entrega. As três perguntas do prompt original de especificação seguem em aberto (ver seção abaixo) — os arquivos assumem defaults sinalizados, ajuste quando decidir.
 
-## As 3 decisões suas ainda em aberto
+## As 2 decisões suas ainda em aberto
 
 1. **Nome definitivo do fork**: usado "Esquadrão Dev Autônomo" em todo lugar. Troque por find-and-replace se quiser outro nome.
 2. **Repositório separado ou pasta alternativa no mesmo repo do Esquadrão Dev original**: os arquivos não assumem nenhum dos dois — funcionam em qualquer lugar, desde que os caminhos internos (`agentes/`, `templates/`) se mantenham relativos à raiz onde este fork estiver.
