@@ -36,10 +36,10 @@
 
 ## Bloqueios Genuínos (freio que continuou parando o fluxo)
 
-> Diferente do log acima — aqui vão só os casos em que nenhuma fonte resolvia a decisão por analogia **e** a ambiguidade era genuína o bastante para admitir leituras opostas, então o fluxo parou de verdade esperando humano (ver "Freios que continuam bloqueantes" no `orquestrador.md`). Se o seu projeto decidiu trocar esse comportamento por "segue com a opção conservadora e destaca" em vez de pausar, registre aqui do mesmo jeito — a diferença é só se o fluxo esperou ou seguiu.
+> Aqui vão só os casos em que nenhuma fonte resolvia a decisão por analogia **e** a ambiguidade era genuína o bastante para admitir leituras opostas — nesses casos, o fluxo **sempre para de verdade**, esperando humano (ver "Freios que continuam bloqueantes" no `orquestrador.md`). Diferente do log de decisões acima, uma entrada aqui nasce **não resolvida**: só vira "Resolvido" depois que o usuário responder.
 
-| ID | O que travou | Leitura conservadora adotada (se não pausou) | Status |
-|----|-----------------|--------------------------------------------------|--------|
+| ID | O que travou | Leituras possíveis identificadas | Status (Aguardando resposta / Resolvido em [data]) |
+|----|-----------------|--------------------------------------|--------------------------------------------------------|
 
 ---
 

@@ -38,7 +38,7 @@ Se as três forem verdadeiras: procure precedente primeiro (`plano de tarefa ant
 
 Se qualquer uma das três condições faltar, é **AFK Tier 1** — baixo risco, segue silencioso.
 
-**Exceção que nunca é resolvida sozinha, mesmo aqui — "Bloqueio Genuíno":** se a decisão é uma ambiguidade genuína de requisito/regra de negócio que admite leituras opostas, **sem nenhum sinal nos artefatos que decida entre elas** (nem mesmo por analogia fraca), isso não vira Tier 2 nem ADR nova — vira uma linha em "Perguntas em aberto para o usuário" (seção abaixo) e, dependendo da configuração do `orquestrador.md` deste fork, pode pausar de verdade o fluxo. Não force uma decisão só para preencher a tabela quando a ambiguidade for real.
+**Exceção que nunca é resolvida sozinha, mesmo aqui — "Bloqueio Genuíno":** se a decisão é uma ambiguidade genuína de requisito/regra de negócio que admite leituras opostas, **sem nenhum sinal nos artefatos que decida entre elas** (nem mesmo por analogia fraca), isso não vira Tier 2 nem ADR nova — vira uma linha em "Perguntas em aberto para o usuário" (seção abaixo) e o fluxo para de verdade, aguardando resposta do usuário — comportamento travado em `orquestrador.md` ("Freios que continuam bloqueantes"), sem exceção. Não force uma decisão só para preencher a tabela quando a ambiguidade for real.
 
 | Decisão | Peso (3 condições?) | Resolução (Tier 1 / Tier 2 / ADR nova / Bloqueio Genuíno) | Fonte citada (Tier 2) ou Alternativas descartadas (ADR nova) | ID em decisoes-autonomas.md |
 |---------|---------------------------|------------------------------------------------------------------|-------------------------------------------------------------------|-----------------------------------|
@@ -70,6 +70,7 @@ Se qualquer uma das três condições faltar, é **AFK Tier 1** — baixo risco,
 - [ ] Checklist Objetivo de Clareza: 7/7
 - [ ] Tabela de Classificação da Decisão: nenhuma linha sem Tier/ADR/Bloqueio Genuíno explícito — nenhuma decisão "esquecida" sem resolução
 - [ ] Nenhuma pausa explícita do usuário está ativa nesta sessão (ver regra de topo do orquestrador.md deste fork) — se estiver, este plano fica em "Em elaboração", nunca autoaprovado, até a pausa ser resolvida
+- [ ] Nenhuma linha em "Perguntas em aberto para o usuário" (Bloqueio Genuíno) desta tarefa está sem resposta — se houver qualquer uma, este plano NÃO pode ser autoaprovado, mesmo que os demais itens estejam OK
 
 ## Ajustes durante a implementação
 _(Se algo mudou depois da autoaprovação, registre aqui: o que mudou, quando, por quê — não edite as seções acima retroativamente)_
