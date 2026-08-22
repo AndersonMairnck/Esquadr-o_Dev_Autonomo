@@ -119,3 +119,44 @@ Mesmo padrão de causa raiz dos três achados que originaram a v0.1 deste fork: 
 
 - Nenhum item de arquivo pendente nesta correção — v1.0 permanece a entrega completa de todos os arquivos do fork. v1.1 é uma correção pontual de comportamento transversal, não uma nova geração de artefato.
 - Recomenda-se, na próxima retomada de projeto real (`prompt-retomada.md`), verificar se alguma resposta anterior à v1.1 foi produzida em idioma incorreto por este mesmo motivo — não é necessário refazer o conteúdo técnico dessas respostas, só sinalizar a divergência de formato caso encontrada (mesmo tratamento já dado a outras divergências de formato no passo 2.5 do `prompt-retomada.md`).
+
+
+## v1.2 — Correção: limite de escopo entre verificação e correção no `prompt-retomada.md`
+
+### Motivação
+
+Duas sessões reais rodaram o mesmo `prompt-retomada.md` sobre o mesmo projeto (GestorWood), sem nenhuma instrução adicional diferente entre elas. Uma diagnosticou o estado real (build, git status, divergências entre `estado-projeto.md` e o disco) e parou, reportando o Formato de Diagnóstico e aguardando decisão — em poucos minutos. A outra, no mesmo passo 2.4, encontrou uma migration de banco pendente e três testes falhando, e a partir daí passou a maior parte do tempo gerando uma migration EF nova, aplicando-a ao banco, e editando arquivos de teste repetidamente até a suíte fechar verde — sem nunca formalmente assumir o papel do Agente 5/6 para isso, sem self-check, e sem reabrir o ciclo QA→Revisor sobre o que foi alterado.
+
+Causa raiz: o passo 2.4 instruía "rode build+testes reais" para confirmar o estado físico, mas não estabelecia um limite entre **confirmar** o que está quebrado e **corrigir** o que foi encontrado quebrado. Mesmo padrão de causa raiz das falhas que originaram a v0.1 e a v1.1 deste fork: uma instrução sem limite explícito de escopo tende a ser preenchida pelo caminho mais "natural" (debugar até passar), mesmo quando esse caminho pula toda a disciplina de gates que o resto do framework exige para o mesmo tipo de trabalho.
+
+### Corrigido: `prompt-retomada.md`
+
+- **Passo 2.4** ganhou a seção **"Limite de escopo: verificação física não é execução de correção"** — rodar build e suíte de testes **uma vez** para confirmar o estado real continua fazendo parte deste passo; gerar migrations, alterar schema, editar código de produção/teste para fazer algo passar, ou rodar retry loops de diagnóstico até a suíte fechar verde, deixam de fazer parte deste passo — viram achado a registrar, não ação a executar ali.
+- **Formato de Diagnóstico (passo 4)** ganhou o campo novo `TRABALHO DE CORREÇÃO NECESSÁRIO (fora do escopo desta retomada)`, com comando + saída real de cada achado quebrado/pendente encontrado durante a verificação do passo 2.4 — visível no relatório antes de qualquer decisão de agir sobre ele.
+- **Passo 5** reforçado: se a sessão seguir para resolver algo listado nesse campo novo, a transição para o Agente 5 ou 6 correspondente precisa ser formal e completa (ler o arquivo do agente, aplicar self-check/evidência real, reabrir o ciclo Dev→QA→Revisão se algo já aprovado for alterado) — nunca uma correção feita "de passagem" ainda dentro do papel de sessão de retomada, mesmo em modo autônomo sem pausa ativa.
+
+### Pendente para próximas entregas
+
+- Nenhum item de arquivo pendente nesta correção — mesma natureza da v1.1: correção pontual de comportamento transversal em `prompt-retomada.md`, não uma nova geração de artefato.
+- Recomenda-se aplicar o mesmo raciocínio de limite de escopo, se algum dia observado na prática, ao critério de "pronto" do Agente 6 (QA) — hoje ele já é o dono correto desse trabalho, mas o `checklist-fases.md` não distingue explicitamente "QA rodando a suíte pela primeira vez" de "retomada verificando estado" caso os dois um dia se confundam na prática.
+
+
+## v1.3 — Correção: profundidade de diagnóstico e persistência de achados no `prompt-retomada.md`
+
+### Motivação
+
+Uma auditoria externa (segunda IA, sessão separada) sobre a correção v1.2 identificou dois furos residuais, ambos do mesmo tipo de causa raiz das versões anteriores (v0.1, v1.1, v1.2): uma instrução com limite parcial ainda deixa espaço para o caminho mais "natural" preencher a lacuna.
+
+1. **Limite de escopo da v1.2 restringe ação, não investigação.** Nada impedia uma sessão de gastar o mesmo tempo desproporcional só "diagnosticando" cada falha em profundidade (abrir cada teste, ler código de produção, formular causa raiz) sem nunca tecnicamente editar um arquivo — respeitando a letra da correção v1.2, mas não o espírito dela.
+2. **Achado sem destino formal.** Um item registrado em `TRABALHO DE CORREÇÃO NECESSÁRIO` (campo novo da v1.2) só existia no relatório daquela sessão de retomada. Se a sessão parasse ali para o usuário decidir depois, e uma sessão/IA futura retomasse sem acesso a esse histórico de chat específico, o achado se perdia — o mesmo tipo de furo que a Camada 1 do Agente 9 (Auditor Externo) já existe para pegar em outro contexto ("alegado mas não encontrado"), só que aqui na direção oposta ("achado mas não persistido").
+
+### Corrigido: `prompt-retomada.md`
+
+- **Passo 2.4** ganhou o limite **"o limite de escopo vale também para profundidade de investigação, não só para ação de correção"** — registrar comando + saída da falha já é suficiente; diagnosticar causa raiz de cada item pertence ao Agente 5 (Diagnóstico Disciplinado de Bugs) ao assumir formalmente a correção, não à retomada.
+- **Passo 2.4** ganhou também o princípio **"se a própria verificação exigir repetição, isso já é achado, não esforço legítimo a insistir"** — distinguindo uma segunda tentativa por causa puramente operacional (ex: processo de teste anterior travando a porta) de instabilidade genuína (build/teste inconsistente entre rodadas), que deve ser registrada como achado em vez de repetida até dar uma leitura limpa.
+- **Formato de Diagnóstico (passo 4)** ganhou a exigência de que todo achado do campo `TRABALHO DE CORREÇÃO NECESSÁRIO` não corrigido na mesma sessão seja promovido para a tabela de Dívida Técnica do `estado-projeto.md`, com ID sequencial Pxx, antes da sessão encerrar — garantindo que o achado sobreviva além do histórico daquele chat específico.
+
+### Pendente para próximas entregas
+
+- Item já sinalizado na v1.2 continua pendente: diferenciar, no critério de "pronto" do Agente 6 (`checklist-fases.md`), "QA rodando a suíte pela primeira vez" de "retomada verificando estado" — ainda não implementado.
+- Nenhum outro item de arquivo pendente nesta correção.
